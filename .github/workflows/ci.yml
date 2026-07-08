@@ -66,25 +66,25 @@ jobs:
           set -e
           if [[ -n "${GITHUB_STEP_SUMMARY:-}" && -f "${GATE_JSON}" ]]; then
             python3 - "${GATE_JSON}" "${GITHUB_STEP_SUMMARY}" <<'PY'
-import json
-import sys
-from pathlib import Path
+          import json
+          import sys
+          from pathlib import Path
 
-gate_path = Path(sys.argv[1])
-summary_path = Path(sys.argv[2])
-data = json.loads(gate_path.read_text(encoding="utf-8"))
+          gate_path = Path(sys.argv[1])
+          summary_path = Path(sys.argv[2])
+          data = json.loads(gate_path.read_text(encoding="utf-8"))
 
-lines = [
-    "### Baseline Label Gate",
-    "",
-    f"- Status: `{data.get('status', '')}`",
-    f"- Reason: `{data.get('reason', '')}`",
-    f"- Message: {data.get('message', '')}",
-    f"- Baseline file: `{data.get('baseline_file', '')}`",
-    f"- Required label: `{data.get('required_label', '')}`",
-]
-summary_path.open("a", encoding="utf-8").write("\n".join(lines) + "\n")
-PY
+          lines = [
+              "### Baseline Label Gate",
+              "",
+              f"- Status: `{data.get('status', '')}`",
+              f"- Reason: `{data.get('reason', '')}`",
+              f"- Message: {data.get('message', '')}",
+              f"- Baseline file: `{data.get('baseline_file', '')}`",
+              f"- Required label: `{data.get('required_label', '')}`",
+          ]
+          summary_path.open("a", encoding="utf-8").write("\n".join(lines) + "\n")
+          PY
           fi
           exit "${gate_exit}"
 
