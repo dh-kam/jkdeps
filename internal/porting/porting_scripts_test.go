@@ -99,19 +99,19 @@ func seedCandidateArtifacts(t *testing.T, outDir, inventorySHA string) {
 		},
 	})
 
-	writeText(t, filepath.Join(outDir, "guava_smoke_parse.log"), "Result: parsed=53 failed=0\n")
-	writeText(t, filepath.Join(outDir, "guava_graph_filtered.log"), "ParseStatus: parsed=53 failed=0\n")
-	writeText(t, filepath.Join(outDir, "guava_stress_smoke_strict.log"), "Result: parsed=84 failed=0\n")
-	writeText(t, filepath.Join(outDir, "guava_stress_graph_strict.log"), "ParseStatus: parsed=84 failed=0\n")
+	writeText(t, filepath.Join(outDir, "guava_smoke_parse.log"), "Parse:        parsed=53 failed=0 success=100.00%\n")
+	writeText(t, filepath.Join(outDir, "guava_graph_filtered.log"), "Parse:        parsed=53 failed=0\n")
+	writeText(t, filepath.Join(outDir, "guava_stress_smoke_strict.log"), "Parse:        parsed=84 failed=0 success=100.00%\n")
+	writeText(t, filepath.Join(outDir, "guava_stress_graph_strict.log"), "Parse:        parsed=84 failed=0\n")
 	writeText(
 		t,
 		filepath.Join(outDir, "kotlin_core_mixed_graph_lenient.log"),
-		"Files: total=699 java=1 kotlin=698\nParseStatus: parsed=699 failed=0\n",
+		"Files: total=699 java=1 kotlin=698\nParse:        parsed=699 failed=0\n",
 	)
 	writeText(
 		t,
 		filepath.Join(outDir, "kotlin_core_mixed_dir_graph_lenient.log"),
-		"Files: total=699 java=1 kotlin=698\nParseStatus: parsed=699 failed=0\n",
+		"Files: total=699 java=1 kotlin=698\nParse:        parsed=699 failed=0\n",
 	)
 }
 

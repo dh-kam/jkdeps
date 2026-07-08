@@ -251,16 +251,21 @@ if parity_requested:
                 f"(<= {thresholds.get('max_declaration_mismatch')})"
             )
 
+parse_zero_pattern = (
+    r"(?:Result|ParseStatus|Parse):\s+parsed=\d+\s+failed=0"
+    r"(?:\s+success=\d+(?:\.\d+)?%)?"
+)
+
 log_rules = [
-    ("guava_smoke_parse.log", r"Result:\s+parsed=\d+\s+failed=0", "strict parse gate"),
-    ("guava_graph_filtered.log", r"ParseStatus:\s+parsed=\d+\s+failed=0", "strict parse gate"),
-    ("guava_stress_smoke_strict.log", r"Result:\s+parsed=\d+\s+failed=0", "strict parse gate"),
-    ("guava_stress_graph_strict.log", r"ParseStatus:\s+parsed=\d+\s+failed=0", "strict parse gate"),
+    ("guava_smoke_parse.log", parse_zero_pattern, "strict parse gate"),
+    ("guava_graph_filtered.log", parse_zero_pattern, "strict parse gate"),
+    ("guava_stress_smoke_strict.log", parse_zero_pattern, "strict parse gate"),
+    ("guava_stress_graph_strict.log", parse_zero_pattern, "strict parse gate"),
 ]
 
 if run_kotlin_core_mixed_graph:
     log_rules.append(
-        ("kotlin_core_mixed_graph_lenient.log", r"ParseStatus:\s+parsed=\d+\s+failed=0", "strict parse gate")
+        ("kotlin_core_mixed_graph_lenient.log", parse_zero_pattern, "strict parse gate")
     )
     log_rules.append(
         (
@@ -272,7 +277,7 @@ if run_kotlin_core_mixed_graph:
 
 if run_kotlin_core_mixed_dir_graph:
     log_rules.append(
-        ("kotlin_core_mixed_dir_graph_lenient.log", r"ParseStatus:\s+parsed=\d+\s+failed=0", "strict parse gate")
+        ("kotlin_core_mixed_dir_graph_lenient.log", parse_zero_pattern, "strict parse gate")
     )
     log_rules.append(
         (

@@ -307,7 +307,7 @@ def evaluate_mixed_graph(section_name: str, default_log_file: str) -> None:
 
     text = log_path.read_text(errors="replace")
     files_match = re.search(r"Files:\s+total=(\d+)\s+java=(\d+)\s+kotlin=(\d+)", text)
-    parse_match = re.search(r"ParseStatus:\s+parsed=(\d+)\s+failed=(\d+)", text)
+    parse_match = re.search(r"(?:ParseStatus|Parse):\s+parsed=(\d+)\s+failed=(\d+)", text)
     result[section_name] = {
         "log_file": str(log_path),
         "min_java_files": min_java,
@@ -334,7 +334,7 @@ def evaluate_mixed_graph(section_name: str, default_log_file: str) -> None:
             f"(min_java={min_java}, min_kotlin={min_kotlin})"
         )
     if parse_match is None:
-        fail(f"{log_rel}: could not find ParseStatus line")
+        fail(f"{log_rel}: could not find parse status line")
     else:
         parsed = int(parse_match.group(1))
         failed = int(parse_match.group(2))
