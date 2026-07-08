@@ -1,0 +1,61 @@
+{
+  "baseline_date": "2026-02-24",
+  "artifact_dir": "/tmp/jkdeps-porting-final13",
+  "sample_refs": {
+    "guava": "9857e70cf51a341ebb41dd2f0b8d3354f6a9d869",
+    "kotlinx.coroutines": "b11abdf01d4d5db85247ab365abc72efc7b95062"
+  },
+  "runtime_inventory": {
+    "sha256": "9bba7c8ae75fca8b419ec6d52cf90fd6f229ca4c4d67d213f7696922d1720d21"
+  },
+  "acceptance": {
+    "kotlin-common-acceptance.json": {
+      "failed_files": 0,
+      "unresolved_imports": 0,
+      "unknown_nodes": 0,
+      "files_with_diagnostics": 0,
+      "total_diagnostics": 0,
+      "max_regression_files_with_diagnostics": 0,
+      "max_regression_total_diagnostics": 0
+    },
+    "kotlin-js-acceptance-lenient.json": {
+      "failed_files": 0,
+      "unresolved_imports": 0,
+      "unknown_nodes": 0,
+      "files_with_diagnostics": 0,
+      "total_diagnostics": 0,
+      "max_regression_files_with_diagnostics": 0,
+      "max_regression_total_diagnostics": 0
+    },
+    "kotlin-jvm-acceptance-lenient.json": {
+      "failed_files": 0,
+      "unresolved_imports": 0,
+      "unknown_nodes": 0,
+      "files_with_diagnostics": 0,
+      "total_diagnostics": 0,
+      "max_regression_files_with_diagnostics": 0,
+      "max_regression_total_diagnostics": 0
+    },
+    "kotlin-core-acceptance-lenient.json": {
+      "failed_files": 0,
+      "unresolved_imports": 0,
+      "unknown_nodes": 0,
+      "files_with_diagnostics": 0,
+      "total_diagnostics": 0,
+      "max_regression_files_with_diagnostics": 0,
+      "max_regression_total_diagnostics": 0
+    }
+  },
+  "mixed_graph": {
+    "log_file": "kotlin_core_mixed_graph_lenient.log",
+    "min_java_files": 1,
+    "min_kotlin_files": 1,
+    "require_failed_zero": true
+  },
+  "mixed_dir_graph": {
+    "log_file": "kotlin_core_mixed_dir_graph_lenient.log",
+    "min_java_files": 1,
+    "min_kotlin_files": 1,
+    "require_failed_zero": true
+  }
+}

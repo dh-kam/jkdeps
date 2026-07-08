@@ -1,0 +1,25 @@
+# name|url|ref|target_path|lang|include_kts|project_timeout|java_grammar|min_total_files|min_parsed_files|max_failed_files|max_unresolved
+# java_grammar/project_timeout 열이 비어 있으면 각각 JAVA_GRAMMAR/PROJECT_TIMEOUT 기본값을 사용합니다.
+# java baseline
+google/guava|https://github.com/google/guava.git|9857e70cf51a341ebb41dd2f0b8d3354f6a9d869|guava/src/com/google/common/base|java|false|300|java20|50|50|0|1000
+square/okhttp|https://github.com/square/okhttp.git||okhttp/src/jvmMain|java|false|120|java20|1|1|0|200
+square/retrofit|https://github.com/square/retrofit.git||retrofit/src/main/java|java|false|300|java20|1|1|0|800
+reactivestreams/reactive-streams-jvm|https://github.com/reactive-streams/reactive-streams-jvm.git||.|java|false||java20|1|1|0|800
+google/gson|https://github.com/google/gson.git||gson/src/main/java/com/google/gson|java|false|900|java20|1|1|0|1000
+apache/commons-io|https://github.com/apache/commons-io.git||src/main/java|java|false|600|java20|1|1|0|2000
+apache/commons-codec|https://github.com/apache/commons-codec.git||src/main/java|java|false|600|java20|1|1|0|1500
+apache/commons-collections|https://github.com/apache/commons-collections.git||src/main/java|java|false|900|java25|1|1|0|2000
+jedis/jedis|https://github.com/redis/jedis.git||src/main/java/redis/clients/jedis|java|false|900|java11|1|1|0|2000
+netty/netty|https://github.com/netty/netty.git||transport/src/main/java|java|false|900|java21|1|1|0|4000
+
+# kotlin baseline
+Kotlin/kotlinx.coroutines|https://github.com/Kotlin/kotlinx.coroutines.git||kotlinx-coroutines-core/common/src|kotlin|true|||1|1|0|4000
+Kotlin/kotlinx.serialization|https://github.com/Kotlin/kotlinx.serialization.git||core/commonMain/src|kotlin|true|||1|1|0|5000
+Kotlin/kotlinx-datetime|https://github.com/Kotlin/kotlinx-datetime.git||core/common/src|kotlin|true|||1|1|0|5000
+Kotlin/kotlinx.atomicfu|https://github.com/Kotlin/kotlinx-atomicfu.git||atomicfu/src/commonMain/kotlin|kotlin|true|||1|1|0|5000
+square/okio|https://github.com/square/okio.git||okio/src/commonMain/kotlin|kotlin|true|||1|1|0|5000
+arrow-kt/arrow|https://github.com/arrow-kt/arrow.git||arrow-libs/core/arrow-core/src/commonMain/kotlin|kotlin|true|||1|1|0|5000
+Koin/koin|https://github.com/InsertKoinIO/koin.git||projects/ktor/koin-ktor/src/commonMain/kotlin|kotlin|true|||1|1|0|5000
+cashapp/sqldelight|https://github.com/cashapp/sqldelight.git||sqldelight-compiler/src/main/kotlin|kotlin|true|||1|1|0|5000
+Kotlin/kotlinx.cli|https://github.com/Kotlin/kotlinx.cli.git||core/commonMain/src|kotlin|true|||1|1|0|5000
+JetBrains/Exposed|https://github.com/JetBrains/Exposed.git||exposed-core/src/main/kotlin|kotlin|true|||1|1|0|5000

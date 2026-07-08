@@ -1,0 +1,145 @@
+{
+  "jar_path": "/workspace/jkdeps/tools/kotlin-stdlib-js-2.0.21.klib",
+  "source_jars": [
+    "/workspace/jkdeps/tools/kotlin-stdlib-js-2.0.21.klib"
+  ],
+  "generated_at": "2026-02-24T03:28:16.024441606Z",
+  "class_files": 0,
+  "top_level_classes": 0,
+  "builtins_files": 0,
+  "metadata_files": 330,
+  "packages": [
+    {
+      "package": "kotlin",
+      "count": 66
+    },
+    {
+      "package": "kotlin.collections",
+      "count": 65
+    },
+    {
+      "package": "kotlin.js",
+      "count": 44
+    },
+    {
+      "package": "kotlin.text",
+      "count": 36
+    },
+    {
+      "package": "kotlin.reflect",
+      "count": 20
+    },
+    {
+      "package": "kotlin.coroutines",
+      "count": 11
+    },
+    {
+      "package": "kotlin.time",
+      "count": 10
+    },
+    {
+      "package": "kotlin.ranges",
+      "count": 9
+    },
+    {
+      "package": "kotlin.sequences",
+      "count": 7
+    },
+    {
+      "package": "default.linkdata.root_package",
+      "count": 6
+    },
+    {
+      "package": "kotlin.experimental",
+      "count": 5
+    },
+    {
+      "package": "kotlin.comparisons",
+      "count": 4
+    },
+    {
+      "package": "kotlin.internal",
+      "count": 4
+    },
+    {
+      "package": "kotlin.random",
+      "count": 4
+    },
+    {
+      "package": "kotlin.reflect.js.internal",
+      "count": 4
+    },
+    {
+      "package": "kotlin.coroutines.intrinsics",
+      "count": 3
+    },
+    {
+      "package": "kotlin.enums",
+      "count": 3
+    },
+    {
+      "package": "kotlin.io",
+      "count": 3
+    },
+    {
+      "package": "kotlin.io.encoding",
+      "count": 3
+    },
+    {
+      "package": "kotlin.math",
+      "count": 3
+    },
+    {
+      "package": "kotlin.properties",
+      "count": 3
+    },
+    {
+      "package": "kotlin.uuid",
+      "count": 3
+    },
+    {
+      "package": "kotlin.contracts",
+      "count": 2
+    },
+    {
+      "package": "kotlin.coroutines.cancellation",
+      "count": 2
+    },
+    {
+      "package": "kotlin.jvm",
+      "count": 2
+    },
+    {
+      "package": "kotlin.annotation",
+      "count": 1
+    },
+    {
+      "package": "kotlin.concurrent",
+      "count": 1
+    },
+    {
+      "package": "kotlin.coroutines.js.internal",
+      "count": 1
+    },
+    {
+      "package": "kotlin.js.collections",
+      "count": 1
+    },
+    {
+      "package": "kotlin.js.internal",
+      "count": 1
+    },
+    {
+      "package": "kotlin.native",
+      "count": 1
+    },
+    {
+      "package": "kotlin.native.concurrent",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.dom",
+      "count": 1
+    }
+  ]
+}

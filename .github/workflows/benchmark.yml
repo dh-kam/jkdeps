@@ -1,0 +1,69 @@
+name: Benchmark Regression
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  benchmark:
+    name: Benchmark Regression Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Run benchmarks
+        run: |
+          go test ./internal/parser -bench=. -benchmem -run-profile=. | tee benchmark-results.txt
+
+      - name: Store baseline result
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p .github/benchmarks
+          cp benchmark-results.txt .github/benchmarks/${{ github.sha }}.txt
+
+      - name: Compare with baseline
+        if: github.event_name == 'pull_request'
+        run: |
+          BASELINE_SHA="${{ github.event.pull_request.base.sha }}"
+          BASELINE_FILE=".github/benchmarks/${BASELINE_SHA}.txt"
+
+          if [ -f "$BASELINE_FILE" ]; then
+            echo "Comparing with baseline: $BASELINE_SHA"
+            mkdir -p benchmark-comparison
+            go install golang.org/x/perf/cmd/perf@latest
+            perf compare "$BASELINE_FILE" benchmark-results.txt > benchmark-comparison/results.md || true
+            echo "## Benchmark Comparison" >> $GITHUB_STEP_SUMMARY
+            cat benchmark-comparison/results.md >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No baseline found for $BASELINE_SHA"
+          fi
+
+      - name: Comment results on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            gh pr comment ${{ github.event.pull_request.number }} << EOF
+            ## 📊 Benchmark Results
+
+            ### Summary
+            - **Runner**: ${{ runner.os }}
+            - **Go Version**: ${{ env.GO_VERSION }}
+
+            See detailed results in the workflow logs.
+            EOF

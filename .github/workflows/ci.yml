@@ -1,0 +1,110 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  go-test:
+    name: Go Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Run unit tests
+        run: go test ./...
+
+  porting-acceptance-full:
+    name: Porting Acceptance Full
+    runs-on: ubuntu-latest
+    needs:
+      - go-test
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      - name: Enforce baseline approval label
+        if: github.event_name == 'pull_request'
+        env:
+          BASELINE_APPROVAL_LABEL: ${{ vars.BASELINE_APPROVAL_LABEL }}
+          PR_LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+        run: |
+          mkdir -p /tmp/jkdeps-porting-ci
+          GATE_JSON="/tmp/jkdeps-porting-ci/baseline-label-gate.json"
+          set +e
+          ./scripts/check_baseline_label_gate.sh \
+            --event-name "${{ github.event_name }}" \
+            --base-sha "${{ github.event.pull_request.base.sha }}" \
+            --labels "${PR_LABELS}" \
+            --required-label "${BASELINE_APPROVAL_LABEL}" \
+            --baseline-file docs/porting-baseline.json \
+            --json-out "${GATE_JSON}"
+          gate_exit=$?
+          set -e
+          if [[ -n "${GITHUB_STEP_SUMMARY:-}" && -f "${GATE_JSON}" ]]; then
+            python3 - "${GATE_JSON}" "${GITHUB_STEP_SUMMARY}" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+gate_path = Path(sys.argv[1])
+summary_path = Path(sys.argv[2])
+data = json.loads(gate_path.read_text(encoding="utf-8"))
+
+lines = [
+    "### Baseline Label Gate",
+    "",
+    f"- Status: `{data.get('status', '')}`",
+    f"- Reason: `{data.get('reason', '')}`",
+    f"- Message: {data.get('message', '')}",
+    f"- Baseline file: `{data.get('baseline_file', '')}`",
+    f"- Required label: `{data.get('required_label', '')}`",
+]
+summary_path.open("a", encoding="utf-8").write("\n".join(lines) + "\n")
+PY
+          fi
+          exit "${gate_exit}"
+
+      - name: Run full acceptance
+        run: |
+          RUN_GUAVA_STRESS_STRICT=1 \
+          RUN_KOTLIN_JVM=1 \
+          RUN_KOTLIN_CORE=1 \
+          RUN_KOTLIN_OFFICIAL_PARITY=1 \
+          KOTLIN_OFFICIAL_PARITY_MAX_PARSE_STATUS_MISMATCH=0 \
+          ./scripts/porting_acceptance.sh /tmp/jkdeps-samples /tmp/jkdeps-porting-ci
+          PORTING_OUT_DIR=/tmp/jkdeps-porting-ci BASELINE_FILE_PATH=./docs/porting-baseline.json make porting-audit
+          if [[ -n "${GITHUB_STEP_SUMMARY:-}" ]]; then
+            ./scripts/append_porting_step_summary.sh /tmp/jkdeps-porting-ci "${GITHUB_STEP_SUMMARY}"
+          fi
+
+      - name: Upload acceptance artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jkdeps-porting-ci
+          path: /tmp/jkdeps-porting-ci
+          if-no-files-found: warn

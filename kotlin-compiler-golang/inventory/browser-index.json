@@ -1,0 +1,101 @@
+{
+  "jar_path": "/workspace/jkdeps/tools/kotlinx-browser-0.5.0.jar",
+  "source_jars": [
+    "/workspace/jkdeps/tools/kotlinx-browser-0.5.0.jar"
+  ],
+  "generated_at": "2026-02-24T03:31:45.428740488Z",
+  "class_files": 0,
+  "top_level_classes": 0,
+  "builtins_files": 0,
+  "metadata_files": 27,
+  "packages": [
+    {
+      "package": "kotlinx.dom",
+      "count": 4
+    },
+    {
+      "package": "org.khronos.webgl",
+      "count": 2
+    },
+    {
+      "package": "org.w3c.dom",
+      "count": 2
+    },
+    {
+      "package": "kotlinx.browser",
+      "count": 1
+    },
+    {
+      "package": "org.w3c",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.css.masking",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.dom.clipboard",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.dom.css",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.dom.encryptedmedia",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.dom.events",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.dom.mediacapture",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.dom.mediasource",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.dom.parsing",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.dom.pointerevents",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.dom.svg",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.dom.url",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.fetch",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.files",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.notifications",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.performance",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.workers",
+      "count": 1
+    },
+    {
+      "package": "org.w3c.xhr",
+      "count": 1
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+# Build/test outputs
+/.tmp/
+/jkdeps
+/*.test
+*.out
+/cmd/kotlin-compiler-golang/out/
+/cmd/jkdeps/jkdeps-mixed-graph.json
+
+# Local/debug run artifacts
+/kor-*.json
+/kcg-acceptance.json
+/jkdeps-graph/
+/jkdeps-graph.*
+/jkdeps-mixed-graph/
+/jkdeps-mixed-graph.*
+/.claude/settings.local.json
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Downloaded tool binaries and generated tool classes
+/tools/*.jar
+/tools/*.klib
+/tools/.kcg-official-classes/
+
+# ANTLR generator side outputs; generated Go parser sources are committed.
+/internal/parsers/**/*.interp
+/internal/parsers/**/*.tokens
